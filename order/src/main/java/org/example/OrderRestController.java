@@ -1,6 +1,5 @@
 package org.example;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -24,7 +23,7 @@ public class OrderRestController {
     }
 
 //    @GetMapping
-    public List<Order> getAllOrders() {
+    public List<BusStopEntity> getAllOrders() {
         return orderRepository.get();
     }
 

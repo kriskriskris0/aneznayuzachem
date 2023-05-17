@@ -27,9 +27,9 @@ public class OrderRepository {
         dao.
     }
 
-    public List<Order> get() {
-        List<Order> orders = new ArrayList<>();
-        String sql = "SELECT * FROM postgres";
+    public List<BusStopEntity> get() {
+        List<BusStopEntity> busstop = new ArrayList<>();
+        String sql = "SELECT * FROM BusStop";
         try (Connection conn = DriverManager.getConnection(url, user, password);
              PreparedStatement ps = conn.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
@@ -37,12 +37,12 @@ public class OrderRepository {
                 Order order = new Order();
                 order.setId(rs.getLong("id"));
                 order.setName(rs.getString("name"));
-                orders.add(order);
+                busstop.add(order);
             }
         } catch (SQLException e) {
             throw new RuntimeException("Ошибка получения", e);
         }
-        return orders;
+        return busstop;
     }
 
 

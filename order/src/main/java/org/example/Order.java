@@ -1,11 +1,11 @@
 package org.example;
 
-public class Order {
+public class Order extends BusStopEntity {
 
     private long id;
     private String name;
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
