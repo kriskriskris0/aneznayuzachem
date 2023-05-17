@@ -15,7 +15,8 @@
         <sql>
             create table busStop (
             id bigint not null primary key,
-            address point,
+            x point,
+            y point,
             route_ID int
             );
         </sql>
