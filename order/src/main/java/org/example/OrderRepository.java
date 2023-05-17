@@ -3,23 +3,39 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Repository;
 
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.List;
 
 @Repository
 public class OrderRepository {
 
 
-
+    private final String url;
+    private final String user;
+    private final String password;
 
     private ScheduleDao dao;
 
-    public OrderRepository(ScheduleDao dao) {
+    public OrderRepository(ScheduleDao dao, String url, String user, String password) {
         this.dao = dao;
+        this.url = url;
+        this.user = user;
+        this.password = password;
     }
 
-    public Order create() {
-        dao.
+//    public Order create() {
+//        dao.
+//    }
+
+
+
+    public void delete(long id) {
+        String sql = "DELETE FROM postgres WHERE id = ?";
+        try (Connection conn = DriverManager.getConnection(url, user, password);
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setLong(1, id);
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException("Ошибка удаления: " + id, e);
+        }
     }
 
 
@@ -138,7 +154,7 @@ public class OrderRepository {
 //    }
 //
 //    public void delete(long id) {
-//        String sql = "DELETE FROM orders WHERE id = ?";
+//        String sql = "DELETE FROM postgres WHERE id = ?";
 //        try (Connection conn = DriverManager.getConnection(url, user, password);
 //             PreparedStatement ps = conn.prepareStatement(sql)) {
 //            ps.setLong(1, id);
