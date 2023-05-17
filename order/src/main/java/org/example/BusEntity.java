@@ -3,7 +3,7 @@ package org.example;
 import javax.persistence.*;
 import java.io.Serializable;
 @Entity(name="bus")
-public class OrderEntity implements Serializable {
+public class BusEntity implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "id_generator")
     @Column(name = "id", nullable = false)

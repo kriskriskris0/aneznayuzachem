@@ -1,12 +1,10 @@
 package org.example;
 
-import org.springframework.data.annotation.PersistenceCreator;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.swing.text.html.parser.Entity;
 import java.sql.*;
 
 @Component
@@ -41,7 +39,7 @@ public class PostgresTest {
 
     @Transactional
     public void createOrder(int id,double price){
-        OrderEntity orderEntity = new OrderEntity();
+        BusEntity orderEntity = new BusEntity();
 
 
         entityManager.persist(orderEntity);

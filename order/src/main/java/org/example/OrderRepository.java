@@ -10,7 +10,17 @@ import java.util.List;
 public class OrderRepository {
 
 
+    private final String url;
+    private final String user;
+    private final String password;
 
+    public OrderRepository(@Value("${spring.datasource.url}") String url,
+                           @Value("${spring.datasource.username}") String user,
+                           @Value("${spring.datasource.password}") String password) {
+        this.url = url;
+        this.user = user;
+        this.password = password;
+    }
 
     private ScheduleDao dao;
 
@@ -20,6 +30,24 @@ public class OrderRepository {
 
     public Order create() {
         dao.
+    }
+
+    public List<Order> get() {
+        List<Order> orders = new ArrayList<>();
+        String sql = "SELECT * FROM postgres";
+        try (Connection conn = DriverManager.getConnection(url, user, password);
+             PreparedStatement ps = conn.prepareStatement(sql);
+             ResultSet rs = ps.executeQuery()) {
+            while (rs.next()) {
+                Order order = new Order();
+                order.setId(rs.getLong("id"));
+                order.setName(rs.getString("name"));
+                orders.add(order);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException("Ошибка получения", e);
+        }
+        return orders;
     }
 
 
