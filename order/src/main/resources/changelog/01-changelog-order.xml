@@ -1,0 +1,42 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
+
+    <changeSet author="unk" id="12-04-2023-order">
+        <sql>
+            create table route (
+                id bigint not null primary key,
+                name text
+            );
+        </sql>
+    </changeSet>
+    <changeSet author="unk" id="12-04r">
+        <sql>
+            create table busStop (
+            id bigint not null primary key,
+            address point,
+            route_ID int
+            );
+        </sql>
+    </changeSet>
+    <changeSet author="unk" id="12-y">
+        <sql>
+            create table bus (
+            id bigint not null primary key,
+            name text,
+            route_ID bigint
+            );
+        </sql>
+    </changeSet>
+    <changeSet author="unk" id="12-ylllk">
+        <sql>
+            create table schedule (
+            id bigint not null primary key,
+            route_ID bigint,
+            busstop_ID bigint,
+            time time with time zone
+            );
+        </sql>
+    </changeSet>
+</databaseChangeLog>
