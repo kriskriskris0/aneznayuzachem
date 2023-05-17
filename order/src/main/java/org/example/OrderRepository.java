@@ -23,8 +23,51 @@ public class OrderRepository {
         this.dao = dao;
     }
 
-    public Order create() {
-        dao.
+//    public Order create() {
+//        dao.
+//    }
+
+    public Order getBusId(long id) {
+        Order order = null;
+        String sql = "SELECT * FROM postgres WHERE id = ?";
+        try (Connection conn = DriverManager.getConnection(url, user, password);
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setLong(1, id);
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
+                    order = new Order();
+                    order.setId(rs.getInt("id"));
+                    order.setName(rs.getString("name"));
+                }
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException("Ошибка получения по id: " + id, e);
+        }
+        return order;
+    }
+
+    public void update(Order order) {
+        String sql = "UPDATE postgres SET name = ? WHERE id = ?";
+        try (Connection conn = DriverManager.getConnection(url, user, password);
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setString(1, order.getName());
+            ps.setLong(2, order.getId());
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException("Ошибка обновления : " + order.getId(), e);
+        }
+    }
+
+
+    public void delete(long id) {
+        String sql = "DELETE FROM postgres WHERE id = ?";
+        try (Connection conn = DriverManager.getConnection(url, user, password);
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setLong(1, id);
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException("Ошибка удаления: " + id, e);
+        }
     }
 
     public List<BusStopEntity> get() {

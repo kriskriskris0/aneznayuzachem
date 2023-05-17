@@ -28,8 +28,8 @@ public class OrderRestController {
     }
 
     @GetMapping("/{clientId}")
-    public Order findAllByClientId(@PathVariable long id) {
-        return orderRepository.getClientId(id);
+    public Order findAllByClientId(@PathVariable long Id) {
+        return orderRepository.getBusId(Id);
     }
 
     @PutMapping("/{clientId}")
@@ -38,8 +38,8 @@ public class OrderRestController {
         orderRepository.update(order);
     }
     @GetMapping("/{id}")
-    public Order getOrderById(@PathVariable long id) {
-        return orderRepository.getById(id);
+    public Order getOrderById(@PathVariable long Id) {
+        return orderRepository.getBusId(Id);
     }
 
     @PutMapping("/{id}")
@@ -49,8 +49,8 @@ public class OrderRestController {
     }
 
     @DeleteMapping("/{id}")
-    public void deleteOrder(@PathVariable long id) {
-        Order order = orderRepository.getById(id);
+    public void deleteBus(@PathVariable long id) {
+        Order order = orderRepository.getBusId(id);
         orderRepository.delete(order.getId());
     }
 
