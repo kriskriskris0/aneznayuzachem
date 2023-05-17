@@ -14,17 +14,12 @@ public class OrderRepository {
     private final String user;
     private final String password;
 
-    public OrderRepository(@Value("${spring.datasource.url}") String url,
-                           @Value("${spring.datasource.username}") String user,
-                           @Value("${spring.datasource.password}") String password) {
+    private ScheduleDao dao;
+
+    public OrderRepository(String url, String user, String password, ScheduleDao dao) {
         this.url = url;
         this.user = user;
         this.password = password;
-    }
-
-    private ScheduleDao dao;
-
-    public OrderRepository(ScheduleDao dao) {
         this.dao = dao;
     }
 
