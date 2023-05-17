@@ -12,14 +12,14 @@ public class ScheduleEntity implements Serializable {
     private Long id;
 
     @Column(name = "route_ID", nullable = false)
-    private Long routeID;
+    private Long routeId;
 
-    public Long getRouteID() {
-        return routeID;
+    public Long getRouteId() {
+        return routeId;
     }
 
-    public void setRouteID(Long clientId) {
-        this.routeID = routeID;
+    public void setRouteId(Long clientId) {
+        this.routeId = routeId;
     }
 
     public Long getId(){

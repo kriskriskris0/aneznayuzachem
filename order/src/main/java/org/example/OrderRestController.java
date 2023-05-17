@@ -8,11 +8,11 @@ import java.util.List;
 @RequestMapping("/postgres")
 public class OrderRestController {
 
-    private final OrderRepository orderRepository;
+    private final ScheduleRepository scheduleRepository;
     public PostgresTest postgresTest;
 
-    public OrderRestController(OrderRepository orderRepository, PostgresTest postgresTest) {
-        this.orderRepository = orderRepository;
+    public OrderRestController(ScheduleRepository scheduleRepository, PostgresTest postgresTest) {
+        this.scheduleRepository = scheduleRepository;
         this.postgresTest=postgresTest;
     }
 
@@ -24,34 +24,34 @@ public class OrderRestController {
 
 //    @GetMapping
     public List<BusStopEntity> getAllOrders() {
-        return orderRepository.get();
+        return scheduleRepository.get();
     }
 
     @GetMapping("/{clientId}")
     public Order findAllByClientId(@PathVariable long Id) {
-        return orderRepository.getBusId(Id);
+        return scheduleRepository.getBusId(Id);
     }
 
     @PutMapping("/{clientId}")
     public void findAllByClientId(@PathVariable long id, @RequestBody Order order) {
         order.setId(id);
-        orderRepository.update(order);
+        scheduleRepository.update(order);
     }
     @GetMapping("/{id}")
     public Order getOrderById(@PathVariable long Id) {
-        return orderRepository.getBusId(Id);
+        return scheduleRepository.getBusId(Id);
     }
 
     @PutMapping("/{id}")
     public void updateOrder(@PathVariable long id, @RequestBody Order order) {
         order.setId(id);
-        orderRepository.update(order);
+        scheduleRepository.update(order);
     }
 
     @DeleteMapping("/{id}")
     public void deleteBus(@PathVariable long id) {
-        Order order = orderRepository.getBusId(id);
-        orderRepository.delete(order.getId());
+        Order order = scheduleRepository.getBusId(id);
+        scheduleRepository.delete(order.getId());
     }
 
 }

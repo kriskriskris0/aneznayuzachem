@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Repository
-public class OrderRepository {
+public class ScheduleRepository {
 
 
     private final String url;
@@ -16,16 +16,17 @@ public class OrderRepository {
 
     private ScheduleDao dao;
 
-    public OrderRepository(String url, String user, String password, ScheduleDao dao) {
+    public ScheduleRepository(@Value("${spring.datasource.url}") String url,
+                              @Value("${spring.datasource.username}") String user,
+                              @Value("${spring.datasource.password}") String password) {
         this.url = url;
         this.user = user;
         this.password = password;
-        this.dao = dao;
     }
 
-//    public Order create() {
-//        dao.
-//    }
+    public Order create() {
+        dao.save()
+    }
 
     public Order getBusId(long id) {
         Order order = null;
