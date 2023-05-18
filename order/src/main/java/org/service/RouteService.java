@@ -23,7 +23,7 @@ public class RouteService {
             return repository.create(route);
         }
 
-        throw new RuntimeException("marhist uzhe est");
+        throw new RuntimeException("Маршрут уже есть!");
     }
 
 
