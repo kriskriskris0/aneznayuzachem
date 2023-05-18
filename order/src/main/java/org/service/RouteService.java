@@ -17,7 +17,7 @@ public class RouteService {
 
         //TODO переделать проверку существующего маршрута на имя маршрута
         // Подсказка: Написать в нужном ДАО метод findByName(String name)
-        Route existRoute = repository.get(route.getId());
+        Route existRoute = repository.get(route.getName());
 
         if (existRoute == null) {
             return repository.create(route);
@@ -25,6 +25,7 @@ public class RouteService {
 
         throw new RuntimeException("Маршрут уже есть!");
     }
+
 
 
     //update

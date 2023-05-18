@@ -19,26 +19,26 @@ public class RouteRepository {
 
     public Route create(Route route) {
         RouteEntity routeEntity = new RouteEntity();
-        routeEntity.setName(route.getName());
+        routeEntity.setName(Double.parseDouble(route.getName()));
 
         RouteEntity savedEntity = dao.save(routeEntity);
 
         Route savedRoute = new Route();
         savedRoute.setId(savedEntity.getId());
-        savedRoute.setName(savedEntity.getName());
+        savedRoute.setName(String.valueOf(savedEntity.getName()));
 
         return savedRoute;
     }
 
-    public Route get(Long id) {
-        Optional<RouteEntity> optionalEntity = dao.findById(id);
+    public Route get(String name) {
+        Optional<RouteEntity> optionalEntity = dao.findByName(name);
 
         if (optionalEntity.isPresent()) {
             RouteEntity routeEntity = optionalEntity.get();
 
             Route savedRoute = new Route();
             savedRoute.setId(routeEntity.getId());
-            savedRoute.setName(routeEntity.getName());
+            savedRoute.setName(String.valueOf(routeEntity.getName()));
 
             return savedRoute;
         }
