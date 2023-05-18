@@ -1,5 +1,6 @@
 package org.model;
 
+import org.entities.BusStopEntity;
 import org.entities.RouteEntity;
 
 import java.sql.Time;
