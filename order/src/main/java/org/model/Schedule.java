@@ -1,12 +1,11 @@
 package org.model;
 
 import org.entities.RouteEntity;
-import org.example.BusEntity;
 import org.example.BusStopEntity;
 
 import java.sql.Time;
 
-public class Chedule {
+public class Schedule {
 
     private Long id;
     private BusStopEntity busStopId;

@@ -7,7 +7,7 @@ import java.io.Serializable;
 import java.sql.Time;
 
 @Entity(name="chedule")
-public class CheduleEntity implements Serializable {
+public class ScheduleEntity implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "id_generator")
     @Column(name = "id", nullable = false)
