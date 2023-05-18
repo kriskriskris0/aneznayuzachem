@@ -24,9 +24,9 @@ public class ScheduleRepository {
         this.password = password;
     }
 
-    public Order create() {
-        dao.save()
-    }
+//    public Order create() {
+//        dao.save()
+//    }
 
     public Order getBusId(long id) {
         Order order = null;
