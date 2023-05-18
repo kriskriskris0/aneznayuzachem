@@ -1,12 +1,10 @@
 package org.entities;
 
-import org.example.BusStopEntity;
-
 import javax.persistence.*;
 import java.io.Serializable;
 import java.sql.Time;
 
-@Entity(name="chedule")
+@Entity(name="schedule")
 public class ScheduleEntity implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "id_generator")
