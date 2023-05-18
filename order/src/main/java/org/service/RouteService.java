@@ -27,6 +27,16 @@ public class RouteService {
     }
 
 
+    public Route update(Route route){
+        Route exisRoute = repository.get(String.valueOf(route.getId()));
+
+        if (exisRoute == null){
+            return repository.create(route);
+        }
+
+        throw new RuntimeException("Маршурт пустой!");
+    }
+
 
     //update
     //delete
