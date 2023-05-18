@@ -1,6 +1,5 @@
 package org.example;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -9,11 +8,11 @@ import java.util.List;
 @RequestMapping("/postgres")
 public class OrderRestController {
 
-    private final OrderRepository orderRepository;
+    private final ScheduleRepository scheduleRepository;
     public PostgresTest postgresTest;
 
-    public OrderRestController(OrderRepository orderRepository, PostgresTest postgresTest) {
-        this.orderRepository = orderRepository;
+    public OrderRestController(ScheduleRepository scheduleRepository, PostgresTest postgresTest) {
+        this.scheduleRepository = scheduleRepository;
         this.postgresTest=postgresTest;
     }
 
@@ -24,35 +23,35 @@ public class OrderRestController {
     }
 
 //    @GetMapping
-    public List<Order> getAllOrders() {
-        return orderRepository.get();
+    public List<BusStopEntity> getAllOrders() {
+        return scheduleRepository.get();
     }
 
     @GetMapping("/{clientId}")
-    public Order findAllByClientId(@PathVariable long id) {
-        return orderRepository.getClientId(id);
+    public Order findAllByClientId(@PathVariable long Id) {
+        return scheduleRepository.getBusId(Id);
     }
 
     @PutMapping("/{clientId}")
     public void findAllByClientId(@PathVariable long id, @RequestBody Order order) {
         order.setId(id);
-        orderRepository.update(order);
+        scheduleRepository.update(order);
     }
     @GetMapping("/{id}")
-    public Order getOrderById(@PathVariable long id) {
-        return orderRepository.getById(id);
+    public Order getOrderById(@PathVariable long Id) {
+        return scheduleRepository.getBusId(Id);
     }
 
     @PutMapping("/{id}")
     public void updateOrder(@PathVariable long id, @RequestBody Order order) {
         order.setId(id);
-        orderRepository.update(order);
+        scheduleRepository.update(order);
     }
 
     @DeleteMapping("/{id}")
-    public void deleteOrder(@PathVariable long id) {
-        Order order = orderRepository.getById(id);
-        orderRepository.delete(order.getId());
+    public void deleteBus(@PathVariable long id) {
+        Order order = scheduleRepository.getBusId(id);
+        scheduleRepository.delete(order.getId());
     }
 
 }

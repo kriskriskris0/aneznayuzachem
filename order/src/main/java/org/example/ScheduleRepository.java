@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Repository
-public class OrderRepository {
+public class ScheduleRepository {
 
 
     private final String url;
@@ -16,20 +16,64 @@ public class OrderRepository {
 
     private ScheduleDao dao;
 
-    public OrderRepository(String url, String user, String password, ScheduleDao dao) {
+    public ScheduleRepository(@Value("${spring.datasource.url}") String url,
+                              @Value("${spring.datasource.username}") String user,
+                              @Value("${spring.datasource.password}") String password) {
         this.url = url;
         this.user = user;
         this.password = password;
-        this.dao = dao;
     }
 
-    public Order create() {
-        dao.
+//    public Order create() {
+//        dao.save()
+//    }
+
+    public Order getBusId(long id) {
+        Order order = null;
+        String sql = "SELECT * FROM postgres WHERE id = ?";
+        try (Connection conn = DriverManager.getConnection(url, user, password);
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setLong(1, id);
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
+                    order = new Order();
+                    order.setId(rs.getInt("id"));
+                    order.setName(rs.getString("name"));
+                }
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException("Ошибка получения по id: " + id, e);
+        }
+        return order;
     }
 
-    public List<Order> get() {
-        List<Order> orders = new ArrayList<>();
-        String sql = "SELECT * FROM postgres";
+    public void update(Order order) {
+        String sql = "UPDATE postgres SET name = ? WHERE id = ?";
+        try (Connection conn = DriverManager.getConnection(url, user, password);
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setString(1, order.getName());
+            ps.setLong(2, order.getId());
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException("Ошибка обновления : " + order.getId(), e);
+        }
+    }
+
+
+    public void delete(long id) {
+        String sql = "DELETE FROM postgres WHERE id = ?";
+        try (Connection conn = DriverManager.getConnection(url, user, password);
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setLong(1, id);
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException("Ошибка удаления: " + id, e);
+        }
+    }
+
+    public List<BusStopEntity> get() {
+        List<BusStopEntity> busstop = new ArrayList<>();
+        String sql = "SELECT * FROM BusStop";
         try (Connection conn = DriverManager.getConnection(url, user, password);
              PreparedStatement ps = conn.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
@@ -37,12 +81,12 @@ public class OrderRepository {
                 Order order = new Order();
                 order.setId(rs.getLong("id"));
                 order.setName(rs.getString("name"));
-                orders.add(order);
+                busstop.add(order);
             }
         } catch (SQLException e) {
             throw new RuntimeException("Ошибка получения", e);
         }
-        return orders;
+        return busstop;
     }
 
 
