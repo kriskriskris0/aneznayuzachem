@@ -4,6 +4,7 @@ import org.model.Chedule;
 import org.model.Route;
 import org.repository.CheduleRepository;
 import org.repository.RouteRepository;
+import java.sql.Time;
 
 public class CheduleService {
 
@@ -26,8 +27,20 @@ public class CheduleService {
         throw new RuntimeException("Этот Chedule уже есть");
     }
 
+    public Chedule get(Time time){
+        Chedule existChedule = repository.get(time);
+        return existChedule;
+    }
 
+    public Chedule delete(Chedule chedule){
+        if(chedule == null)
+            throw new RuntimeException("Такого Chedule для удаления нет");
+        return repository.delete(chedule);
+    }
     //update
-    //delete
-    //get
+    public Chedule update(Chedule chedule){
+        if(chedule == null)
+            throw new RuntimeException("Такого Chedule для обновления нет");
+        return repository.update(chedule);
+    }
 }
