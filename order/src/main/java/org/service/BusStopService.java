@@ -37,6 +37,24 @@ public class BusStopService {
         throw new RuntimeException("Такая остановка уже есть");
     }
 
+    public BusStop update(BusStop busStop) {
+        BusStop existBusStop = repository.get(busStop.getAddress());
+
+        if (existBusStop == null){
+            return repository.create(busStop);
+        }
+
+        throw new RuntimeException("Такой остановки нет!");
+    }
+
+    public BusStop delete (BusStop busStop) {
+        busStop.setAddress(busStop.getAddress());
+        BusStop busStopEntity = modelMapper.map(busStop, BusStop.class);
+        busStopEntity = repository.delete(busStop);
+        busStop.setAddress(busStopEntity.getAddress());
+        return busStop;
+    }
+
     public Optional<BusStop> getBusStopByAddress(String address) {
         Optional<BusStopEntity> optionalEntity = dao.findByAddress(address);
         return optionalEntity.map(busStopEntity -> modelMapper.map(busStopEntity, BusStop.class));
@@ -49,9 +67,5 @@ public class BusStopService {
         }
         return busStop;
     }
-
-
-    //update
-    //delete
 }
 
