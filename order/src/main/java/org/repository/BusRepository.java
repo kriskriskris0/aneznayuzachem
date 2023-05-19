@@ -18,12 +18,14 @@ public class BusRepository {
     public Bus create(Bus bus) {
         BusEntity busEntity = new BusEntity();
         busEntity.setName(bus.getName());
+        busEntity.setRoute(bus.getRouteId());
 
         BusEntity savedEntity = dao.save(busEntity);
 
         Bus savedBus = new Bus();
         savedBus.setId(savedEntity.getId());
         savedBus.setName(savedEntity.getName());
+        savedBus.setRouteId(savedEntity.getRoute());
 
         return savedBus;
     }
@@ -37,7 +39,7 @@ public class BusRepository {
             Bus savedBus = new Bus();
             savedBus.setId(busEntity.getId());
             savedBus.setName(busEntity.getName());
-            savedBus.setRouteId(busEntity.getRoute().getId());
+            savedBus.setRouteId(busEntity.getRoute());
 
             return savedBus;
         }
@@ -53,6 +55,7 @@ public class BusRepository {
         Optional<BusEntity> existBus = dao.findById(bus.getId());
         bus.setId(bus.getId());
         bus.setName(bus.getName());
+        bus.setRouteId(bus.getRouteId());
         bus.setRouteId(bus.getRouteId());
 
         BusEntity findBus = dao.delete(existBus);

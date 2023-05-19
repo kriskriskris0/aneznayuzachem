@@ -7,5 +7,5 @@ import java.util.Optional;
 
 public interface BusDao extends CrudRepository<BusEntity, Long>{
     BusEntity delete(Optional<BusEntity> busEntity);
-    Optional findByName(String name);
+    Optional<BusEntity>  findByName(String name);
 }

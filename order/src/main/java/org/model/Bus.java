@@ -1,4 +1,6 @@
 package org.model;
+import org.entities.RouteEntity;
+
 import javax.persistence.Column;
 
 public class Bus {
@@ -6,7 +8,7 @@ public class Bus {
     private Long id;
     private String name;
 
-    private Long routeId;
+    private RouteEntity routeId;
 
     public Long getId() {
         return id;
@@ -24,10 +26,10 @@ public class Bus {
         this.name = name;
     }
 
-    public Long getRouteId() {
+    public RouteEntity getRouteId() {
         return routeId;
     }
-    public void setRouteId(Long routeId) {
+    public void setRouteId(RouteEntity routeId) {
         this.routeId = routeId;
     }
 }

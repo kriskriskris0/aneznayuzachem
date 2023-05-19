@@ -14,7 +14,11 @@ public class ScheduleController {
     private final ScheduleService service;
 
     public ScheduleController(ScheduleService service) { this.service = service; }
-    @PostMapping
+    @PostMapping("create")
     public Schedule create(@RequestBody Schedule schedule) { return service.create(schedule); }
+    @PostMapping("update")
+    public Schedule update(@RequestBody Schedule schedule) { return service.update(schedule); }
+    @PostMapping("delete")
+    public Schedule delete(@RequestBody Schedule schedule) { return service.delete(schedule); }
 
 }

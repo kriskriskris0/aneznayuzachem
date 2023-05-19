@@ -19,14 +19,14 @@ public class BusStopRepository {
     public BusStop create(BusStop busStop) {
         BusStopEntity busStopEntity = new BusStopEntity();
         busStopEntity.setAddress(busStop.getAddress());
-//        busStopEntity.setRoute(busStop.getRouteId());
+        busStopEntity.setRoute(busStop.getRouteId());
 
         BusStopEntity savedEntity = dao.save(busStopEntity);
 
         BusStop savedBusStop = new BusStop();
         savedBusStop.setId(savedEntity.getId());
         savedBusStop.setAddress(savedEntity.getAddress());
-        savedBusStop.setRouteId(savedEntity.getRoute().getId());
+        savedBusStop.setRouteId(savedEntity.getRoute());
 
         return savedBusStop;
     }
@@ -40,7 +40,7 @@ public class BusStopRepository {
             BusStop savedBusStop = new BusStop();
             savedBusStop.setId(busStopEntity.getId());
             savedBusStop.setAddress(busStopEntity.getAddress());
-            savedBusStop.setRouteId(busStopEntity.getRoute().getId());
+            savedBusStop.setRouteId(busStopEntity.getRoute());
 
             return savedBusStop;
         }
@@ -57,7 +57,7 @@ public class BusStopRepository {
         BusStopEntity findRoute = dao.delete(existBusStop);
         dao.save(findRoute);
         return busStop;
-        }
+    }
 
 
     public BusStop delete (BusStop busStop){
