@@ -58,14 +58,14 @@ public class ScheduleRepository {
     }
 
     public Schedule update(Schedule schedule){
-        Optional<ScheduleEntity> existChedule = dao.findById(schedule.getId());
+        Optional<ScheduleEntity> existSchedule = dao.findById(schedule.getId());
         schedule.setId(schedule.getId());
         schedule.setTime(schedule.getTime());
         schedule.setBusStopId(schedule.getBusStopId());
         schedule.setRouteId(schedule.getRouteId());
 
-        ScheduleEntity findChedule = dao.delete(existChedule);
-        dao.save(findChedule);
+        ScheduleEntity findSchedule = dao.delete(existSchedule);
+        dao.save(findSchedule);
         return schedule;
     }
 }

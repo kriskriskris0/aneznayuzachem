@@ -3,6 +3,8 @@ package org.service;
 import org.model.Schedule;
 import org.repository.ScheduleRepository;
 
+import java.sql.Time;
+
 public class ScheduleService {
 
     private final ScheduleRepository repository;
@@ -21,10 +23,26 @@ public class ScheduleService {
             return repository.create(schedule);
         }
 
-        throw new RuntimeException("Этот Chedule уже есть");
+        throw new RuntimeException("Этот Schedule уже есть");
     }
 
 
+    public Schedule get(Time time){
+        Schedule existSchedule = repository.get(time);
+        return existSchedule;
+    }
+
+    public Schedule delete(Schedule schedule){
+        if(schedule == null)
+            throw new RuntimeException("Такого Schedule для удаления нет");
+        return repository.delete(schedule);
+    }
+    //update
+    public Schedule update(Schedule schedule){
+        if(schedule == null)
+            throw new RuntimeException("Такого Schedule для обновления нет");
+        return repository.update(schedule);
+    }
     //update
     //delete
     //get
