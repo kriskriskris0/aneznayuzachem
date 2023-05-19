@@ -34,17 +34,12 @@ public class BusStopController {
 
     @GetMapping("getByAddress/{address}")
     public Optional<BusStop> getByAddress(@PathVariable String address) {
-
         return service.getBusStopByAddress(address);
     }
 
     @GetMapping("getAll")
     public List<BusStop> getAll() {
-
         return service.getAllBusStop();
     }
-
-    //update
-    //delete
 }
 

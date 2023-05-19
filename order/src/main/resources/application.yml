@@ -2,7 +2,7 @@ spring:
   datasource:
     url: jdbc:postgresql://localhost:5432/postgres
     username: postgres
-    password: admin
+    password: 1
     driverClassName: org.postgresql.Driver
 
 
@@ -15,4 +15,4 @@ spring:
     changeLog: classpath:master.xml
     url: jdbc:postgresql://localhost:5432/postgres
     user: postgres
-    password: admin
+    password: 1

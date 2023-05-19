@@ -38,7 +38,7 @@ public class BusStopService {
     }
 
     public BusStop update(BusStop busStop) {
-        BusStop existBusStop = repository.get(busStop.getAddress());
+        BusStop existBusStop = repository.get(String.valueOf(busStop.getId()));
 
         if (existBusStop == null){
             return repository.create(busStop);
@@ -48,10 +48,10 @@ public class BusStopService {
     }
 
     public BusStop delete (BusStop busStop) {
-        busStop.setAddress(busStop.getAddress());
+        busStop.setId(busStop.getId());
         BusStop busStopEntity = modelMapper.map(busStop, BusStop.class);
         busStopEntity = repository.delete(busStop);
-        busStop.setAddress(busStopEntity.getAddress());
+        busStop.setId(busStopEntity.getId());
         return busStop;
     }
 
