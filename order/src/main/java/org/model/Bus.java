@@ -1,11 +1,12 @@
 package org.model;
-
 import javax.persistence.Column;
 
-public class Route {
+public class Bus {
 
     private Long id;
     private String name;
+
+    private Long routeId;
 
     public Long getId() {
         return id;
@@ -22,4 +23,12 @@ public class Route {
     public void setName(String name) {
         this.name = name;
     }
+
+    public Long getRouteId() {
+        return routeId;
+    }
+    public void setRouteId(Long routeId) {
+        this.routeId = routeId;
+    }
 }
+

@@ -1,9 +1,11 @@
-package org.example;
+package org.entities;
 
 import javax.persistence.*;
 import java.io.Serializable;
-@Entity(name="bus")
+
+@Entity(name = "bus")
 public class BusEntity implements Serializable {
+
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "id_generator")
     @Column(name = "id", nullable = false)
@@ -11,6 +13,10 @@ public class BusEntity implements Serializable {
 
     @Column(name = "name")
     private String name;
+
+    @ManyToOne
+    @JoinColumn(name="routeId")
+    private RouteEntity route;
 
     public Long getId(){
         return id;
@@ -28,15 +34,11 @@ public class BusEntity implements Serializable {
         this.name = name;
     }
 
-    @Column(name = "route_ID", nullable = false)
-    private Long routeID;
-
-    public Long getRouteID() {
-        return routeID;
+    public RouteEntity getRoute() {
+        return route;
     }
 
-    public void setRouteID(Long clientId) {
-        this.routeID = routeID;
+    public void setRoute(RouteEntity route) {
+        this.route = route;
     }
 }
-
