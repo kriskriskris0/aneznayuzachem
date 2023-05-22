@@ -58,16 +58,25 @@ public class RouteRepository {
     }
 
     public Route delete (Route route){
+
+
 //        Optional<RouteEntity> routeEnt = dao.findById(route.getId());
 //        if (routeEnt.isEmpty())
 //        {
 //            RouteEntity delEntity = dao.delete(routeEnt);
 //        }
 //        return route;
+
+
+
             Optional<RouteEntity> delEntity = dao.findById(route.getId());
             dao.delete(delEntity);
             return route;
     }
+
+
+
+
     //update
     //delete
 }
