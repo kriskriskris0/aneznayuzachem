@@ -1,7 +1,5 @@
 package org.entities;
 
-import org.example.BusStopEntity;
-
 import javax.persistence.*;
 import java.io.Serializable;
 import java.sql.Time;

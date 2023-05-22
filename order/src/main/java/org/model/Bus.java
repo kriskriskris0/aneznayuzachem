@@ -1,11 +1,14 @@
 package org.model;
+import org.entities.RouteEntity;
 
 import javax.persistence.Column;
 
-public class Route {
+public class Bus {
 
     private Long id;
     private String name;
+
+    private RouteEntity routeId;
 
     public Long getId() {
         return id;
@@ -22,4 +25,12 @@ public class Route {
     public void setName(String name) {
         this.name = name;
     }
+
+    public RouteEntity getRouteId() {
+        return routeId;
+    }
+    public void setRouteId(RouteEntity routeId) {
+        this.routeId = routeId;
+    }
 }
+

@@ -1,6 +1,7 @@
 package org.service;
 
 import org.model.Schedule;
+import org.modelmapper.ModelMapper;
 import org.repository.ScheduleRepository;
 
 import java.sql.Time;
@@ -9,8 +10,11 @@ public class ScheduleService {
 
     private final ScheduleRepository repository;
 
-    public ScheduleService(ScheduleRepository repository) {
+    private final ModelMapper modelMapper;
+
+    public ScheduleService(ScheduleRepository repository, ModelMapper modelMapper) {
         this.repository = repository;
+        this.modelMapper = modelMapper;
     }
 
     public Schedule create(Schedule schedule) {
@@ -23,27 +27,27 @@ public class ScheduleService {
             return repository.create(schedule);
         }
 
-        throw new RuntimeException("Этот Schedule уже есть");
+        throw new RuntimeException("Такое расписание уже есть");
     }
 
 
-    public Schedule get(Time time){
-        Schedule existSchedule = repository.get(time);
-        return existSchedule;
+    public Schedule update(Schedule schedule) {
+        Schedule existSchedule = repository.get(Time.valueOf(String.valueOf(schedule.getId())));
+
+        if (existSchedule == null){
+            return repository.create(schedule);
+        }
+
+        throw new RuntimeException("Такого расписания нет!");
     }
 
-    public Schedule delete(Schedule schedule){
-        if(schedule == null)
-            throw new RuntimeException("Такого Schedule для удаления нет");
-        return repository.delete(schedule);
+    public Schedule delete (Schedule schedule) {
+        schedule.setId(schedule.getId());
+        Schedule scheduleEntity = modelMapper.map(schedule, Schedule.class);
+        scheduleEntity = repository.delete(schedule);
+        schedule.setId(scheduleEntity.getId());
+        return schedule;
     }
-    //update
-    public Schedule update(Schedule schedule){
-        if(schedule == null)
-            throw new RuntimeException("Такого Schedule для обновления нет");
-        return repository.update(schedule);
-    }
-    //update
-    //delete
+
     //get
 }
