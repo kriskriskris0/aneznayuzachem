@@ -8,10 +8,7 @@ import java.util.Optional;
 
 public interface RouteDao extends CrudRepository<RouteEntity, Long> {
 
-
-    RouteEntity delete(Optional<RouteEntity> routeEnt);
-
-    RouteEntity findAll(RouteEntity routeEntity);
+//    RouteEntity findAll(RouteEntity routeEntity);
 
     Optional<RouteEntity> findByName(String name);
 }

@@ -21,12 +21,12 @@ public class BusController {
         return service.create(bus);
     }
 
-    @PostMapping("update")
+    @PutMapping("update")
     public Bus update(@RequestBody Bus bus) {
         return service.update(bus);
     }
 
-    @PostMapping("delete")
+    @DeleteMapping("delete")
     public Bus delete(@RequestBody Bus bus) { return service.delete(bus); }
 
     @GetMapping("getByName/{name}")

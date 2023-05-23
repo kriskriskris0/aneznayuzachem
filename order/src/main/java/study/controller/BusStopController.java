@@ -24,13 +24,13 @@ public class BusStopController {
         return service.create(busStop);
     }
 
-    @PostMapping("update")
+    @PutMapping("update")
     public BusStop update(@RequestBody BusStop busStop) {
 
         return service.update(busStop);
     }
 
-    @PostMapping("delete")
+    @DeleteMapping("delete")
     public BusStop delete(@RequestBody BusStop busStop) {
         return service.delete(busStop);
     }
