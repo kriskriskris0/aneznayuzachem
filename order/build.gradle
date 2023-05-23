@@ -3,9 +3,9 @@ plugins {
     id 'application'
 }
 
-group 'org.main'
+group 'study'
 version '1.0-SNAPSHOT'
-mainClassName = 'org.main.Main'
+mainClassName = 'study.Main'
 
 repositories {
     mavenCentral()
