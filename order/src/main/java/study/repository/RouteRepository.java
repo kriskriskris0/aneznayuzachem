@@ -30,7 +30,7 @@ public class RouteRepository {
         return savedRoute;
     }
 
-    public Route get(double name) {
+    public Route get(String name) {
         Optional<RouteEntity> optionalEntity = dao.findByName(name);
 
         if (optionalEntity.isPresent()) {

@@ -28,6 +28,6 @@ public class RouteController {
         return service.delete(route);
     }
     @GetMapping("/get/{name}")
-    public Optional<Route> getName(@PathVariable double name) { return service.getName(name); }
+    public Optional<Route> getName(@PathVariable String name) { return service.getName(name); }
 
 }
