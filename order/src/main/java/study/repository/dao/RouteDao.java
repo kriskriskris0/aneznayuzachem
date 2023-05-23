@@ -10,5 +10,5 @@ public interface RouteDao extends CrudRepository<RouteEntity, Long> {
 
 //    RouteEntity findAll(RouteEntity routeEntity);
 
-    Optional<RouteEntity> findByName(String name);
+    Optional<RouteEntity> findByName(double name);
 }

@@ -5,7 +5,7 @@ import javax.persistence.Column;
 public class Route {
 
     private Long id;
-    private String name;
+    private double name;
 
     public Long getId() {
         return id;
@@ -15,11 +15,11 @@ public class Route {
         this.id = id;
     }
 
-    public String getName() {
+    public double getName() {
         return name;
     }
 
-    public void setName(String name) {
+    public void setName(double name) {
         this.name = name;
     }
 }

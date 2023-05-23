@@ -3,9 +3,11 @@ package study.service;
 import study.model.Schedule;
 import org.modelmapper.ModelMapper;
 import study.repository.ScheduleRepository;
+import org.springframework.stereotype.Component;
 
 import java.sql.Time;
 
+@Component
 public class ScheduleService {
 
     private final ScheduleRepository repository;

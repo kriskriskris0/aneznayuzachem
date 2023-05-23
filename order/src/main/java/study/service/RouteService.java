@@ -41,7 +41,7 @@ public class RouteService {
 
 
     public Route update(Route route){
-        Route exisRoute = repository.get(String.valueOf(route.getId()));
+        Route exisRoute = repository.get(route.getId());
 
         if (exisRoute == null){
             return repository.create(route);
@@ -59,7 +59,7 @@ public class RouteService {
         return route;
     }
 
-    public Optional<Route> getName(String name) {
+    public Optional<Route> getName(double name) {
         Optional<RouteEntity> optionalEntity = dao.findByName(name);
         return optionalEntity.map(routeEntity -> modelMapper.map(routeEntity, Route.class));
     }

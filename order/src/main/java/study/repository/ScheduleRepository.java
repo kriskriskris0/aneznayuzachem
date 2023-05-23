@@ -1,5 +1,6 @@
 package study.repository;
 
+import org.springframework.stereotype.Component;
 import study.entities.ScheduleEntity;
 import study.model.Schedule;
 import study.repository.dao.ScheduleDao;
@@ -8,6 +9,7 @@ import java.sql.Time;
 
 import java.util.Optional;
 
+@Component
 public class ScheduleRepository {
 
     private final ScheduleDao dao;
