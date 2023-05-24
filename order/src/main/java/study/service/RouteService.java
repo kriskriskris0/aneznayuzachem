@@ -16,8 +16,6 @@ import java.util.Optional;
 public class RouteService {
 
     @Autowired
-    private RouteRepository routeRepository;
-    @Autowired
     private ModelMapper modelMapper;
     @Autowired
     private RouteDao dao;
@@ -55,8 +53,8 @@ public class RouteService {
     public Route delete (Route route){
 
         route.setId(route.getId());
-        Route routeEntity = modelMapper.map(route, Route.class);
-        routeEntity = routeRepository.delete(route);
+//        Route routeEntity = modelMapper.map(route, Route.class);
+        Route routeEntity = repository.delete(route);
         route.setId(routeEntity.getId());
         return route;
     }

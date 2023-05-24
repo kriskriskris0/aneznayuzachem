@@ -2,9 +2,7 @@ package study.model;
 
 import study.entities.RouteEntity;
 
-import javax.persistence.Column;
-
-public class BusStop {
+public class Stop {
     private Long id;
     private String address;
     private RouteEntity routeId;

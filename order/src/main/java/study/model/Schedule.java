@@ -1,6 +1,7 @@
 package study.model;
 
-import study.entities.BusStopEntity;
+import study.entities.BusEntity;
+import study.entities.StopEntity;
 import study.entities.RouteEntity;
 
 import java.sql.Time;
@@ -8,7 +9,8 @@ import java.sql.Time;
 public class Schedule {
 
     private Long id;
-    private BusStopEntity busStopId;
+    private BusEntity busId;
+    private StopEntity stopId;
     private RouteEntity routeId;
     private Time time;
 
@@ -20,6 +22,10 @@ public class Schedule {
         this.id = id;
     }
 
+    public  BusEntity getBusId(){ return busId; }
+
+    public void setBusId(BusEntity busId) { this.busId = busId; }
+
     public RouteEntity getRouteId() {
         return routeId;
     }
@@ -28,12 +34,12 @@ public class Schedule {
         this.routeId = routeId;
     }
 
-    public BusStopEntity getBusStopId() {
-        return busStopId;
+    public StopEntity getStopId() {
+        return stopId;
     }
 
-    public void setBusStopId(BusStopEntity busStopId) {
-        this.busStopId = busStopId;
+    public void setStopId(StopEntity busStopId) {
+        this.stopId = busStopId;
     }
 
     public Time getTime() {
