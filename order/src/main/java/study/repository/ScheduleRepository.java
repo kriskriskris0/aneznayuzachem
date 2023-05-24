@@ -5,6 +5,7 @@ import study.entities.BusEntity;
 import study.entities.ScheduleEntity;
 import study.model.Bus;
 import study.model.Schedule;
+import study.repository.dao.BusDao;
 import study.repository.dao.ScheduleDao;
 
 import java.sql.Time;
@@ -15,6 +16,7 @@ import java.util.Optional;
 public class ScheduleRepository {
 
     private final ScheduleDao dao;
+    private BusDao daobus;
 
     public ScheduleRepository(ScheduleDao dao) {
         this.dao = dao;
@@ -40,9 +42,9 @@ public class ScheduleRepository {
     }
 
     //TODO гет по номеру автобуса:
-    public Bus getBus(String name){
+    public String getBus(BusEntity bus){
 
-        Optional<BusEntity> optionalEntity = dao.findByName(name);
+        Optional<BusEntity> optionalEntity = daobus.findByid(bus);
 
         if (optionalEntity.isPresent()) {
             BusEntity busEntity = optionalEntity.get();
@@ -52,7 +54,7 @@ public class ScheduleRepository {
             savedBus.setName(busEntity.getName());
             savedBus.setRouteId(busEntity.getRoute());
 
-            return savedBus;
+            return savedBus.getName();
         }
 
         return null;

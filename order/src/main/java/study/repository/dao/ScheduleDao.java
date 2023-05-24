@@ -11,7 +11,7 @@ public interface ScheduleDao extends CrudRepository<ScheduleEntity, Long> {
 
     Optional<ScheduleEntity> findByTime(Time time);
 
-    Optional<BusEntity> findByBusId(BusEntity bus);
+    //Optional<BusEntity> findByBusId(BusEntity bus);
 
-    Optional<BusEntity> findByName(String name);
+    //Optional<BusEntity> findByName(BusEntity bus);
 }
