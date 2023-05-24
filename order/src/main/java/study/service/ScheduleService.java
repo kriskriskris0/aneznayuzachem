@@ -1,5 +1,6 @@
 package study.service;
 
+import study.model.Bus;
 import study.model.Schedule;
 import org.modelmapper.ModelMapper;
 import study.repository.ScheduleRepository;
@@ -18,11 +19,18 @@ public class ScheduleService {
         this.repository = repository;
         this.modelMapper = modelMapper;
     }
+    public Bus findBusByName(String name){
+        Bus existBus = repository.getBus(name);
+        if(existBus != null){
+            return existBus;
+        }
+        throw new RuntimeException("Такого автобуса в расписании нет");
+    }
 
     public Schedule create(Schedule schedule) {
 
         //TODO переделать проверку существующего маршрута на ВРЕМЯ маршрута
-        // Подсказка: Написать в нужном ДАО метод findByName(Time time) УЖЕ СДЕЛАЛ!
+        // Подсказка: Написать в нужном ДАО метод findByTime(Time time) УЖЕ СДЕЛАЛ!
         Schedule existSchedule = repository.get(schedule.getTime());
 
         if (existSchedule == null) {

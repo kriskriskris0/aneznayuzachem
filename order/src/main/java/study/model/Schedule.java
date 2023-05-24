@@ -1,5 +1,6 @@
 package study.model;
 
+import study.entities.BusEntity;
 import study.entities.BusStopEntity;
 import study.entities.RouteEntity;
 
@@ -8,6 +9,7 @@ import java.sql.Time;
 public class Schedule {
 
     private Long id;
+    private BusEntity busId;
     private BusStopEntity busStopId;
     private RouteEntity routeId;
     private Time time;
@@ -18,6 +20,11 @@ public class Schedule {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public  BusEntity getBusId(){ return busId; }
+    public void setBusId(BusEntity busId) {
+        this.busId = busId;
     }
 
     public RouteEntity getRouteId() {

@@ -12,6 +12,10 @@ public class ScheduleEntity implements Serializable {
     private Long id;
 
     @ManyToOne
+    @JoinColumn(name = "busId")
+    private BusEntity bus;
+
+    @ManyToOne
     @JoinColumn(name = "busStopId")
     private BusStopEntity busStop;
 
@@ -29,6 +33,10 @@ public class ScheduleEntity implements Serializable {
     public void setId(Long id) {
         this.id = id;
     }
+
+    public BusEntity getBusId() { return bus; }
+
+    public void setBusId(BusEntity bus) { this.bus = bus; }
 
     public RouteEntity getRouteId() { return route; }
 
