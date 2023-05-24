@@ -1,6 +1,7 @@
 package study.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import study.entities.BusEntity;
 import study.entities.ScheduleEntity;
 import study.model.Bus;
 import study.model.Schedule;
@@ -25,10 +26,10 @@ public class ScheduleService {
         this.repository = repository;
         this.modelMapper = modelMapper;
     }
-    public Bus findBusByName(String name){
-        Bus existBus = repository.getBus(name);
-        if(existBus != null){
-            return existBus;
+    public String findBusByName(BusEntity bus){
+        var name = repository.getBus(bus);
+        if(name != null){
+            return name;
         }
         throw new RuntimeException("Такого автобуса в расписании нет");
     }

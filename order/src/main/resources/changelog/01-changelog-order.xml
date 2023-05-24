@@ -35,6 +35,7 @@
             id bigint not null primary key,
             route_ID bigint,
             stop_ID bigint,
+            bus_ID bigint,
             time time with time zone
             );
         </sql>
