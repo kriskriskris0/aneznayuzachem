@@ -54,15 +54,13 @@ public class BusStopRepository {
         busStop.setAddress(busStop.getAddress());
         busStop.setRouteId(busStop.getRouteId());
 
-        BusStopEntity findRoute = dao.delete(existBusStop);
-        dao.save(findRoute);
+        dao.save(existBusStop.get());
         return busStop;
     }
 
-
-    public BusStop delete (BusStop busStop){
+    public BusStop delete(BusStop busStop) {
         Optional<BusStopEntity> delEntity = dao.findById(busStop.getId());
-        dao.delete(delEntity);
+        dao.deleteById(delEntity.get().getId());
         return busStop;
     }
 }

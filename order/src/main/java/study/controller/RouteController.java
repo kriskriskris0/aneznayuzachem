@@ -5,6 +5,7 @@ import study.service.RouteService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
+import java.util.List;
 
 @RestController
 @RequestMapping("/route")
@@ -19,15 +20,17 @@ public class RouteController {
     public Route create(@RequestBody Route route) {
         return service.create(route);
     }
-    @PostMapping("update")
+    @PutMapping("update")
     public Route update(@RequestBody Route route) {
         return service.update(route);
     }
-    @PostMapping("delete")
+    @DeleteMapping("delete")
     public Route delete(@RequestBody Route route) {
         return service.delete(route);
     }
-    @GetMapping("get/{name}")
-    public Optional<Route> get(@PathVariable String name) { return service.getName(name); }
+    @GetMapping("/get/{name}")
+    public Optional<Route> getName(@PathVariable String name) { return service.getName(name); }
+    @GetMapping("getAll")
+    public List<Route> getAll() { return service.getAllRoute(); }
 
 }

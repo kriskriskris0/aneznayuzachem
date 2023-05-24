@@ -1,11 +1,11 @@
 package study.service;
 
+import org.modelmapper.ModelMapper;
+import org.springframework.stereotype.Component;
 import study.entities.BusEntity;
 import study.model.Bus;
-import org.modelmapper.ModelMapper;
 import study.repository.BusRepository;
 import study.repository.dao.BusDao;
-import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;

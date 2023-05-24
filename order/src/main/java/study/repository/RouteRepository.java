@@ -18,13 +18,13 @@ public class RouteRepository {
 
     public Route create(Route route) {
         RouteEntity routeEntity = new RouteEntity();
-        routeEntity.setName(Double.parseDouble(route.getName()));
+        routeEntity.setName(route.getName());
 
         RouteEntity savedEntity = dao.save(routeEntity);
 
         Route savedRoute = new Route();
         savedRoute.setId(savedEntity.getId());
-        savedRoute.setName(String.valueOf(savedEntity.getName()));
+        savedRoute.setName(savedEntity.getName());
 
         return savedRoute;
     }
@@ -37,7 +37,7 @@ public class RouteRepository {
 
             Route savedRoute = new Route();
             savedRoute.setId(routeEntity.getId());
-            savedRoute.setName(String.valueOf(routeEntity.getName()));
+            savedRoute.setName(routeEntity.getName());
 
             return savedRoute;
         }
@@ -51,22 +51,13 @@ public class RouteRepository {
         route.setId(route.getId());
         route.setName(route.getName());
 
-        RouteEntity findRoute = dao.delete(existRoute);
-        dao.save(findRoute);
+        dao.save(existRoute.get());
         return route;
     }
 
     public Route delete (Route route){
-//        Optional<RouteEntity> routeEnt = dao.findById(route.getId());
-//        if (routeEnt.isEmpty())
-//        {
-//            RouteEntity delEntity = dao.delete(routeEnt);
-//        }
-//        return route;
-            Optional<RouteEntity> delEntity = dao.findById(route.getId());
-            dao.delete(delEntity);
-            return route;
+        Optional<RouteEntity> delEntity = dao.findById(route.getId());
+        dao.deleteById(delEntity.get().getId());
+        return route;
     }
-    //update
-    //delete
 }

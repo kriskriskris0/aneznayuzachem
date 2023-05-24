@@ -1,5 +1,6 @@
 package study.repository;
 
+import org.springframework.stereotype.Component;
 import study.entities.ScheduleEntity;
 import study.model.Schedule;
 import study.repository.dao.ScheduleDao;
@@ -8,6 +9,7 @@ import java.sql.Time;
 
 import java.util.Optional;
 
+@Component
 public class ScheduleRepository {
 
     private final ScheduleDao dao;
@@ -53,7 +55,7 @@ public class ScheduleRepository {
 
     public Schedule delete(Schedule schedule){
         Optional<ScheduleEntity> delEntity = dao.findById(schedule.getId());
-        dao.delete(delEntity);
+        dao.deleteById(delEntity.get().getId());
         return schedule;
     }
 
@@ -64,8 +66,7 @@ public class ScheduleRepository {
         schedule.setBusStopId(schedule.getBusStopId());
         schedule.setRouteId(schedule.getRouteId());
 
-        ScheduleEntity findChedule = dao.delete(existChedule);
-        dao.save(findChedule);
+        dao.save(existChedule.get());
         return schedule;
     }
 }

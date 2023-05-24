@@ -1,6 +1,5 @@
 package study.model;
 import study.entities.RouteEntity;
-
 public class Bus {
 
     private Long id;

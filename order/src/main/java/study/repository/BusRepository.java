@@ -57,7 +57,6 @@ public class BusRepository {
         bus.setName(bus.getName());
         bus.setRouteId(bus.getRouteId());
 
-
         dao.save(existBus.get());
         return bus;
     }

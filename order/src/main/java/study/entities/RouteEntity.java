@@ -12,7 +12,7 @@ public class RouteEntity implements Serializable {
     private Long id;
 
     @Column(name = "name")
-    private double name;
+    private String name;
 
     public Long getId(){
         return id;
@@ -22,11 +22,11 @@ public class RouteEntity implements Serializable {
         this.id = id;
     }
 
-    public double getName() {
+    public String getName() {
         return name;
     }
 
-    public void setName(double name) {
+    public void setName(String name) {
         this.name = name;
     }
 
