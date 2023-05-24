@@ -8,6 +8,8 @@ import study.repository.dao.RouteDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Component
@@ -64,8 +66,12 @@ public class RouteService {
         return optionalEntity.map(routeEntity -> modelMapper.map(routeEntity, Route.class));
     }
 
+    public List<Route> getAllRoute() {
+        ArrayList<Route> route = new ArrayList<>();
+        for (RouteEntity entity : dao.findAll()) {
+            route.add(modelMapper.map(entity, Route.class));
+        }
+        return route;
+    }
 
-    //update
-    //delete
-    //get
 }

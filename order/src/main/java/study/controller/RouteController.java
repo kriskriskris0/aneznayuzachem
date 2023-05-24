@@ -5,6 +5,7 @@ import study.service.RouteService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
+import java.util.List;
 
 @RestController
 @RequestMapping("/route")
@@ -29,5 +30,7 @@ public class RouteController {
     }
     @GetMapping("/get/{name}")
     public Optional<Route> getName(@PathVariable String name) { return service.getName(name); }
+    @GetMapping("getAll")
+    public List<Route> getAll() { return service.getAllRoute(); }
 
 }
