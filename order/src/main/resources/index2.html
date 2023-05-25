@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>ToDo List</title>
+    <script src="/js/jquery-3.4.0.min.js"></script>
+    <script src="main2.js"></script>
+    <link rel="stylesheet" type="text/css" href="style.css">
+
+</head>
+<body>
+<div class="menu">
+    <div><a href="index2.html">Расписание</a></div>
+    <div><a href="stops.html">Остановки</a></div>
+    <div><a href="route.html">Маршруты</a></div>
+</div>
+<div id="todo-form">
+    <form>
+        <label>Выберите номер автобуса:
+        </label>
+<!--        <input id="todo-form-name" type="text" name="name" value="">-->
+        <select class="input-row" id="bus_schedule js-dropdown"></select>
+
+
+        <div class="dropdown-checkbox form-group">
+            <label class="label-title">Выберите номер автобуса:</label>
+            <ul>
+                <li><label><input type="checkbox" name="type[]">A</label></li>
+                <li><label><input type="checkbox" name="type[]">B</label></li>
+                <li><label><input type="checkbox" name="type[]">C</label></li>
+                <li><label><input type="checkbox" name="type[]">C</label></li>
+                <li><label><input type="checkbox" name="type[]">C</label></li>
+            </ul>
+        </div>
+
+
+    </form>
+</div>
+
+<div id="id-name">
+
+</div>
+
+<div id = "routeId"></div>
+</body>
+</html>

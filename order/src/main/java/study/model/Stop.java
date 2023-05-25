@@ -2,7 +2,7 @@ package study.model;
 
 import study.entities.RouteEntity;
 
-public class BusStop {
+public class Stop {
     private Long id;
     private String address;
     private RouteEntity routeId;

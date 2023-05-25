@@ -1,39 +1,37 @@
-* {
-    font-family: Arial, serif;
+
+<---! ТУТ к выпадающему списку чекбокс --->
+
+.dropdown-checkbox{
+  position:relative;
+  display:inline-block
 }
 
-#todo-form {
+.dropdown-checkbox .label-title{
+  font-size:13px;
 
-    align-items: center;
-    justify-content: center;
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 10;
-    background-color: #88888878;
+}
+.dropdown-checkbox ul{
+     position: absolute;
+    background: #cacaca;
+    list-style: none;
+    min-width: 180px;
+    margin: 0px;
+    padding:0px;
+    left:0px;
+    display:none;
+    z-index:1;
+    border: 1px solid #9c9c9c;
+}
+.dropdown-checkbox ul li{
+    font-size: 15px;
+    padding: 10px;
+    border-bottom: 1px solid #a5a5a5;
+    margin: 0px;
+}
+.dropdown-checkbox ul li input{
+  margin-right:10px;
 }
 
-#todo-form form {
-    background-color: white;
-    border: 1px solid #333;
-    width: 300px;
-    padding: 20px;
-}
-
-#todo-form h2 {
-    margin-top: 0;
-}
-
-#todo-form label {
-    display: block;
-}
-
-#todo-form form > * {
-    margin-bottom: 5px;
-}
-
-h4 {
-    margin-bottom: 0;
+.dropdown-checkbox:hover ul{
+  display:block
 }
