@@ -29,8 +29,8 @@ public class BusController {
     @DeleteMapping("delete")
     public Bus delete(@RequestBody Bus bus) { return service.delete(bus); }
 
-    @GetMapping("getByName/{name}")
-    public Optional<Bus> getByName(@PathVariable String name) {
+    @GetMapping("get/{name}")
+    public Optional<Bus> get(@PathVariable String name) {
         return service.getBusByName(name);
     }
 

@@ -12,8 +12,12 @@ public class ScheduleEntity implements Serializable {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "busStopId")
-    private BusStopEntity busStop;
+    @JoinColumn(name = "busId")
+    private BusEntity bus;
+
+    @ManyToOne
+    @JoinColumn(name = "stopId")
+    private StopEntity stop;
 
     @ManyToOne
     @JoinColumn(name = "routeId")
@@ -30,14 +34,18 @@ public class ScheduleEntity implements Serializable {
         this.id = id;
     }
 
+    public BusEntity getBusId() { return bus; }
+
+    public void setBusId(BusEntity bus) { this.bus = bus; }
+
     public RouteEntity getRouteId() { return route; }
 
     public void setRouteId(RouteEntity route) { this.route = route; }
 
-    public BusStopEntity getBusStopId() { return busStop; }
+    public StopEntity getStopId() { return stop; }
 
-    public void setBusStopId(BusStopEntity busStop) {
-        this.busStop = busStop;
+    public void setStopId(StopEntity busStop) {
+        this.stop = busStop;
     }
 
     public Time getTime() {
@@ -47,6 +55,5 @@ public class ScheduleEntity implements Serializable {
     public void setTime(Time time) {
         this.time = time;
     }
-
 
 }

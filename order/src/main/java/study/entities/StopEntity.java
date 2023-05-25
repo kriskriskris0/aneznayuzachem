@@ -3,8 +3,8 @@ package study.entities;
 import javax.persistence.*;
 import java.io.Serializable;
 
-@Entity(name="busStop")
-public class BusStopEntity implements Serializable {
+@Entity(name="stop")
+public class StopEntity implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "id_generator")
 

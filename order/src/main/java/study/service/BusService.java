@@ -50,8 +50,8 @@ public class BusService {
 
     public Bus delete (Bus bus) {
         bus.setId(bus.getId());
-        Bus busEntity = modelMapper.map(bus, Bus.class);
-        busEntity = repository.delete(bus);
+//        Bus busEntity = modelMapper.map(bus, Bus.class);
+        Bus busEntity = repository.delete(bus);
         bus.setId(busEntity.getId());
         return bus;
     }
