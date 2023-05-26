@@ -26,6 +26,7 @@ public class ScheduleService {
         this.repository = repository;
         this.modelMapper = modelMapper;
     }
+
     public String findBusByName(BusEntity bus){
         var name = repository.getBus(bus);
         if(name != null){
