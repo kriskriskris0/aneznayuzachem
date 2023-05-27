@@ -7,5 +7,5 @@ import java.util.Optional;
 
 public interface BusDao extends CrudRepository<BusEntity, Long>{
     Optional<BusEntity>  findByName(String name);
-    Optional<BusEntity> findByid(BusEntity bus);
+//    Optional<BusEntity> findByid(BusEntity bus);
 }

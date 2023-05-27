@@ -5,6 +5,7 @@ import study.entities.BusEntity;
 import study.entities.ScheduleEntity;
 import study.model.Bus;
 import study.model.Schedule;
+import study.repository.dao.BusDao;
 import study.repository.dao.ScheduleDao;
 import org.modelmapper.ModelMapper;
 import study.repository.ScheduleRepository;
@@ -13,6 +14,7 @@ import org.springframework.stereotype.Component;
 import java.sql.Time;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Component
 public class ScheduleService {
@@ -20,6 +22,8 @@ public class ScheduleService {
     private final ScheduleRepository repository;
     @Autowired
     private ScheduleDao dao;
+//    @Autowired
+//    private BusDao busDao;
     private final ModelMapper modelMapper;
 
     public ScheduleService(ScheduleRepository repository, ModelMapper modelMapper) {
@@ -27,12 +31,9 @@ public class ScheduleService {
         this.modelMapper = modelMapper;
     }
 
-    public String findBusByName(BusEntity bus){
-        var name = repository.getBus(bus);
-        if(name != null){
-            return name;
-        }
-        throw new RuntimeException("Такого автобуса в расписании нет");
+    public Optional<Schedule> findBusByName(String name){
+        Optional<ScheduleEntity> optionalEntity = dao.findByBusName(name);
+        return optionalEntity.map(scheduleEntity -> modelMapper.map(scheduleEntity, Schedule.class));
     }
 
     public Schedule create(Schedule schedule) {

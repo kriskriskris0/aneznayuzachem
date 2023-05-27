@@ -5,6 +5,7 @@ import java.io.Serializable;
 
 
 @Entity(name="route")
+@SequenceGenerator(name = "id_generator", sequenceName = "route_id_seq", allocationSize = 1)
 public class RouteEntity implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "id_generator")

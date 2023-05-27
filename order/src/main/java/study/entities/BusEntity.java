@@ -4,6 +4,7 @@ import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity(name = "bus")
+@SequenceGenerator(name = "id_generator", sequenceName = "bus_id_seq", allocationSize = 1)
 public class BusEntity implements Serializable {
 
     @Id

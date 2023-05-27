@@ -4,6 +4,7 @@ import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity(name="stop")
+@SequenceGenerator(name = "id_generator", sequenceName = "stop_id_seq", allocationSize = 1)
 public class StopEntity implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "id_generator")
