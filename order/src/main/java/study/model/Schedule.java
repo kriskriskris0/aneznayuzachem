@@ -9,9 +9,9 @@ import java.sql.Time;
 public class Schedule {
 
     private Long id;
-    private BusEntity busId;
-    private StopEntity stopId;
-    private RouteEntity routeId;
+    private Bus bus;
+    private Stop stop;
+    private Route route;
     private Time time;
 
     public Long getId() {
@@ -22,24 +22,28 @@ public class Schedule {
         this.id = id;
     }
 
-    public  BusEntity getBusId(){ return busId; }
-
-    public void setBusId(BusEntity busId) { this.busId = busId; }
-
-    public RouteEntity getRouteId() {
-        return routeId;
+    public Bus getBus() {
+        return bus;
     }
 
-    public void setRouteId(RouteEntity routeId) {
-        this.routeId = routeId;
+    public void setBus(Bus bus) {
+        this.bus = bus;
     }
 
-    public StopEntity getStopId() {
-        return stopId;
+    public Stop getStop() {
+        return stop;
     }
 
-    public void setStopId(StopEntity busStopId) {
-        this.stopId = busStopId;
+    public void setStop(Stop stop) {
+        this.stop = stop;
+    }
+
+    public Route getRoute() {
+        return route;
+    }
+
+    public void setRoute(Route route) {
+        this.route = route;
     }
 
     public Time getTime() {

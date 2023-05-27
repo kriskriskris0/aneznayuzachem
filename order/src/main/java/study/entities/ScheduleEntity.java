@@ -5,6 +5,7 @@ import java.io.Serializable;
 import java.sql.Time;
 
 @Entity(name="schedule")
+@SequenceGenerator(name = "id_generator", sequenceName = "schedule_id_seq", allocationSize = 1)
 public class ScheduleEntity implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "id_generator")

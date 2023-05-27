@@ -19,14 +19,14 @@ public class StopRepository {
     public Stop create(Stop stop) {
         StopEntity stopEntity = new StopEntity();
         stopEntity.setAddress(stop.getAddress());
-        stopEntity.setRoute(stop.getRouteId());
+        stopEntity.setRouteId(stop.getRouteId());
 
         StopEntity savedEntity = dao.save(stopEntity);
 
         Stop savedStop = new Stop();
         savedStop.setId(savedEntity.getId());
         savedStop.setAddress(savedEntity.getAddress());
-        savedStop.setRouteId(savedEntity.getRoute());
+        savedStop.setRouteId(savedEntity.getRouteId());
 
         return savedStop;
     }
@@ -40,7 +40,7 @@ public class StopRepository {
             Stop savedStop = new Stop();
             savedStop.setId(stopEntity.getId());
             savedStop.setAddress(stopEntity.getAddress());
-            savedStop.setRouteId(stopEntity.getRoute());
+            savedStop.setRouteId(stopEntity.getRouteId());
 
             return savedStop;
         }

@@ -40,4 +40,41 @@
             );
         </sql>
     </changeSet>
+
+    <changeSet  author="liquibase-docs"  id="createSequence-example1">
+        <createSequence
+                         dataType="int"
+                         incrementBy="1"
+                         minValue="1"
+                         schemaName="public"
+                         sequenceName="route_id_seq"
+                         startValue="1"/>
+    </changeSet>
+    <changeSet  author="liquibase-docs"  id="createSequence-example2">
+        <createSequence
+                dataType="int"
+                incrementBy="1"
+                minValue="1"
+                schemaName="public"
+                sequenceName="bus_id_seq"
+                startValue="1"/>
+    </changeSet>
+    <changeSet  author="liquibase-docs"  id="createSequence-example3">
+        <createSequence
+                dataType="int"
+                incrementBy="1"
+                minValue="1"
+                schemaName="public"
+                sequenceName="stop_id_seq"
+                startValue="1"/>
+    </changeSet>
+    <changeSet  author="liquibase-docs"  id="createSequence-example4">
+        <createSequence
+                dataType="int"
+                incrementBy="1"
+                minValue="1"
+                schemaName="public"
+                sequenceName="schedule_id_seq"
+                startValue="1"/>
+    </changeSet>
 </databaseChangeLog>

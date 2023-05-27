@@ -4,6 +4,7 @@ import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity(name = "bus")
+@SequenceGenerator(name = "id_generator", sequenceName = "bus_id_seq", allocationSize = 1)
 public class BusEntity implements Serializable {
 
     @Id
@@ -34,11 +35,11 @@ public class BusEntity implements Serializable {
         this.name = name;
     }
 
-    public RouteEntity getRoute() {
+    public RouteEntity getRouteId() {
         return route;
     }
 
-    public void setRoute(RouteEntity route) {
+    public void setRouteId(RouteEntity route) {
         this.route = route;
     }
 }

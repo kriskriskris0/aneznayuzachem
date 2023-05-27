@@ -18,6 +18,7 @@ public class RouteRepository {
 
     public Route create(Route route) {
         RouteEntity routeEntity = new RouteEntity();
+        routeEntity.setId(route.getId());
         routeEntity.setName(route.getName());
 
         RouteEntity savedEntity = dao.save(routeEntity);

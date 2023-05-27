@@ -2,11 +2,14 @@ package study.repository;
 
 import org.springframework.stereotype.Component;
 import study.entities.BusEntity;
+import study.entities.RouteEntity;
 import study.entities.ScheduleEntity;
+import study.entities.StopEntity;
 import study.model.Bus;
+import study.model.Route;
 import study.model.Schedule;
+import study.model.Stop;
 import study.repository.dao.ScheduleDao;
-import study.repository.dao.BusDao;
 
 import java.sql.Time;
 
@@ -16,7 +19,6 @@ import java.util.Optional;
 public class ScheduleRepository {
 
     private final ScheduleDao dao;
-    private BusDao daobus;
 
     public ScheduleRepository(ScheduleDao dao) {
         this.dao = dao;
@@ -25,40 +27,61 @@ public class ScheduleRepository {
     public Schedule create(Schedule schedule) {
         ScheduleEntity scheduleEntity = new ScheduleEntity();
         scheduleEntity.setTime(schedule.getTime());
-        scheduleEntity.setBusId(schedule.getBusId());
-        scheduleEntity.setRouteId(schedule.getRouteId());
-        scheduleEntity.setStopId(schedule.getStopId());
+
+        BusEntity bus = new BusEntity();
+        bus.setId(schedule.getBus().getId());
+        scheduleEntity.setBusId(bus);
+
+        RouteEntity route = new RouteEntity();
+        route.setId(schedule.getRoute().getId());
+        scheduleEntity.setRouteId(route);
+
+        StopEntity stop = new StopEntity();
+        stop.setId(schedule.getStop().getId());
+        scheduleEntity.setStopId(stop);
 
         ScheduleEntity savedEntity = dao.save(scheduleEntity);
 
         Schedule savedSchedule = new Schedule();
         savedSchedule.setId(savedEntity.getId());
         savedSchedule.setTime(savedEntity.getTime());
-        savedSchedule.setBusId(savedEntity.getBusId());
-        savedSchedule.setStopId(savedEntity.getStopId());
-        savedSchedule.setRouteId(savedEntity.getRouteId());
+
+        Bus bus1 = new Bus();
+        bus1.setId(savedEntity.getBusId().getId());
+        bus1.setName(savedEntity.getBusId().getName());
+        savedSchedule.setBus(bus1);
+
+        Route route1 = new Route();
+        route1.setId(savedEntity.getRouteId().getId());
+        route1.setName(savedEntity.getRouteId().getName());
+        savedSchedule.setRoute(route1);
+
+        Stop stop1 = new Stop();
+        stop1.setId(savedEntity.getStopId().getId());
+        stop1.setAddress(savedEntity.getStopId().getAddress());
+        savedSchedule.setStop(stop1);
 
         return savedSchedule;
     }
 
     //TODO гет по номеру автобуса:
-    public String getBus(BusEntity bus){
-
-        Optional<BusEntity> optionalEntity = daobus.findByid(bus);
-
-        if (optionalEntity.isPresent()) {
-            BusEntity busEntity = optionalEntity.get();
-
-            Bus savedBus = new Bus();
-            savedBus.setId(busEntity.getId());
-            savedBus.setName(busEntity.getName());
-            savedBus.setRouteId(busEntity.getRoute());
-
-            return savedBus.getName();
-        }
-
-        return null;
-    }
+//    public String getBusByName(String name){
+//
+//        Optional<ScheduleEntity> optionalEntity = dao.findByBusName(name);
+//
+////        if (optionalEntity.isPresent()) {
+////            BusEntity busEntity = optionalEntity.get();
+////
+////            Bus savedBus = new Bus();
+////            savedBus.setId(busEntity.getId());
+////            savedBus.setName(busEntity.getName());
+////            savedBus.setRouteId(busEntity.getRoute());
+////
+////            return savedBus.getName();
+////        }
+//
+//        return null;
+//    }
     public Schedule get(Time time) {
         Optional<ScheduleEntity> optionalEntity = dao.findByTime(time);
 
@@ -68,9 +91,28 @@ public class ScheduleRepository {
             Schedule savedSchedule = new Schedule();
             savedSchedule.setId(scheduleEntity.getId());
             savedSchedule.setTime(scheduleEntity.getTime());
-            savedSchedule.setStopId(scheduleEntity.getStopId());
-            savedSchedule.setRouteId(scheduleEntity.getRouteId());
-            savedSchedule.setBusId(scheduleEntity.getBusId());
+//            savedSchedule.setStopId(scheduleEntity.getStopId());
+//            savedSchedule.setRouteId(scheduleEntity.getRouteId());
+//            savedSchedule.setBusId(scheduleEntity.getBusId());
+
+            ScheduleEntity savedEntity = dao.save(scheduleEntity);
+            savedSchedule.setId(savedEntity.getId());
+            savedSchedule.setTime(savedEntity.getTime());
+
+            Bus bus1 = new Bus();
+            bus1.setId(savedEntity.getBusId().getId());
+            bus1.setName(savedEntity.getBusId().getName());
+            savedSchedule.setBus(bus1);
+
+            Route route1 = new Route();
+            route1.setId(savedEntity.getRouteId().getId());
+            route1.setName(savedEntity.getRouteId().getName());
+            savedSchedule.setRoute(route1);
+
+            Stop stop1 = new Stop();
+            stop1.setId(savedEntity.getStopId().getId());
+            stop1.setAddress(savedEntity.getStopId().getAddress());
+            savedSchedule.setStop(stop1);
 
             return savedSchedule;
         }
@@ -88,9 +130,9 @@ public class ScheduleRepository {
         Optional<ScheduleEntity> existSchedule = dao.findById(schedule.getId());
         schedule.setId(schedule.getId());
         schedule.setTime(schedule.getTime());
-        schedule.setBusId(schedule.getBusId());
-        schedule.setStopId(schedule.getStopId());
-        schedule.setRouteId(schedule.getRouteId());
+//        schedule.setBusId(schedule.getBusId());
+//        schedule.setStopId(schedule.getStopId());
+//        schedule.setRouteId(schedule.getRouteId());
 
         dao.save(existSchedule.get());
         return schedule;
