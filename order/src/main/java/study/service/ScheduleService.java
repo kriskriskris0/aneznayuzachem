@@ -22,8 +22,7 @@ public class ScheduleService {
     private final ScheduleRepository repository;
     @Autowired
     private ScheduleDao dao;
-//    @Autowired
-//    private BusDao busDao;
+
     private final ModelMapper modelMapper;
 
     public ScheduleService(ScheduleRepository repository, ModelMapper modelMapper) {

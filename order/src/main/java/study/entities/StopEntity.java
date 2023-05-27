@@ -35,11 +35,11 @@ public class StopEntity implements Serializable {
         this.address = address;
     }
 
-    public RouteEntity getRoute() {
+    public RouteEntity getRouteId() {
         return route;
     }
 
-    public void setRoute(RouteEntity route) {
+    public void setRouteId(RouteEntity route) {
         this.route = route;
     }
 
