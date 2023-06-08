@@ -1,14 +1,11 @@
 package study.model;
-import study.entities.RouteEntity;
 
-import javax.persistence.Column;
 
 public class Bus {
 
     private Long id;
     private String name;
-
-    private RouteEntity routeId;
+    private Route route;
 
     public Long getId() {
         return id;
@@ -26,11 +23,11 @@ public class Bus {
         this.name = name;
     }
 
-    public RouteEntity getRouteId() {
-        return routeId;
+    public Route getRoute() {
+        return route;
     }
-    public void setRouteId(RouteEntity routeId) {
-        this.routeId = routeId;
+    public void setRoute(Route route) {
+        this.route = route;
     }
 }
 

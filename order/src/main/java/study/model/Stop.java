@@ -4,7 +4,7 @@ package study.model;
 public class Stop {
     private Long id;
     private String address;
-    private Route routeId;
+    private Route route;
 
     public Long getId() {
         return id;
@@ -22,9 +22,9 @@ public class Stop {
         this.address = address;
     }
 
-    public Route getRouteId() { return routeId; }
+    public Route getRoute() { return route; }
 
-    public void setRouteId(Route routeId) {
-        this.routeId = routeId;
+    public void setRoute(Route route) {
+        this.route = route;
     }
 }

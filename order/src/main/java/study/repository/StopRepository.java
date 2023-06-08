@@ -35,7 +35,7 @@ public class StopRepository {
 
 //2 ошибка 500, говорит, что getRouteId = null
         StopEntity stopEntity = modelMapper.map(stop, StopEntity.class);
-        var routeEntity = routeDao.findById(stop.getRouteId().getId());
+        var routeEntity = routeDao.findById(stop.getRoute().getId());
         stopEntity.setRouteId(routeEntity.get());
         stopEntity = dao.save(stopEntity);
         stop.setId(stopEntity.getId());
@@ -106,7 +106,7 @@ public class StopRepository {
         Optional<StopEntity> existStop = dao.findById(stop.getId());
         stop.setId(stop.getId());
         stop.setAddress(stop.getAddress());
-        stop.setRouteId(stop.getRouteId());
+        stop.setRoute(stop.getRoute());
 
         dao.save(existStop.get());
         return stop;
