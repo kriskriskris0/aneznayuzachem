@@ -1,18 +1,27 @@
 package study.repository;
 
+import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import study.repository.dao.BusDao;
 import study.entities.BusEntity;
 import study.model.Bus;
 import org.springframework.stereotype.Component;
+import study.repository.dao.RouteDao;
 
 import java.util.Optional;
 
 @Component
 public class BusRepository {
     private final BusDao dao;
+    @Autowired
+    private ModelMapper modelMapper;
+    @Autowired
+    private RouteDao routeDao;
 
-    public BusRepository(BusDao dao) {
+    public BusRepository(BusDao dao, ModelMapper modelMapper, RouteDao routeDao) {
         this.dao = dao;
+        this.modelMapper = modelMapper;
+        this.routeDao = routeDao;
     }
 
     public Bus create(Bus bus) {
@@ -28,6 +37,14 @@ public class BusRepository {
         savedBus.setRouteId(savedEntity.getRouteId());
 
         return savedBus;
+
+//        BusEntity busEntity = modelMapper.map(bus, BusEntity.class);
+//        var routeEntity = routeDao.findById(bus.getRouteId().getId());
+//        busEntity.setRouteId(routeEntity.get());
+//        busEntity = dao.save(busEntity);
+//        bus.setId(busEntity.getId());
+//        return bus;
+
     }
 
     public Bus get(String name) {

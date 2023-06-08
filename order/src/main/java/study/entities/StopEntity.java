@@ -17,7 +17,7 @@ public class StopEntity implements Serializable {
 
     @ManyToOne
     @JoinColumn(name="routeId")
-    private RouteEntity route;
+    private RouteEntity routeId;
 
     public Long getId(){
         return id;
@@ -36,11 +36,11 @@ public class StopEntity implements Serializable {
     }
 
     public RouteEntity getRouteId() {
-        return route;
+        return routeId;
     }
 
-    public void setRouteId(RouteEntity route) {
-        this.route = route;
+    public void setRouteId(RouteEntity routeId) {
+        this.routeId = routeId;
     }
 
 }

@@ -6,7 +6,6 @@ import study.repository.StopRepository;
 import study.repository.dao.StopDao;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.Optional;
 import java.util.ArrayList;
@@ -15,11 +14,8 @@ import java.util.List;
 @Component
 public class StopService {
 
-    @Autowired
     private final StopDao dao;
-    @Autowired
     private final ModelMapper modelMapper;
-    @Autowired
     private final StopRepository repository;
 
     public StopService(StopDao dao, ModelMapper modelMapper, StopRepository repository) {
