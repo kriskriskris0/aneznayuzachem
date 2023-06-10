@@ -1,8 +1,5 @@
 package study.model;
 
-import study.entities.BusEntity;
-import study.entities.StopEntity;
-import study.entities.RouteEntity;
 
 import java.sql.Time;
 

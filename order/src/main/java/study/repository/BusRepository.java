@@ -1,33 +1,36 @@
 package study.repository;
 
+import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import study.repository.dao.BusDao;
 import study.entities.BusEntity;
 import study.model.Bus;
 import org.springframework.stereotype.Component;
+import study.repository.dao.RouteDao;
 
 import java.util.Optional;
 
 @Component
 public class BusRepository {
     private final BusDao dao;
+    @Autowired
+    private ModelMapper modelMapper;
+    @Autowired
+    private RouteDao routeDao;
 
-    public BusRepository(BusDao dao) {
+    public BusRepository(BusDao dao, ModelMapper modelMapper, RouteDao routeDao) {
         this.dao = dao;
+        this.modelMapper = modelMapper;
+        this.routeDao = routeDao;
     }
 
     public Bus create(Bus bus) {
-        BusEntity busEntity = new BusEntity();
-        busEntity.setName(bus.getName());
-        busEntity.setRouteId(bus.getRouteId());
-
-        BusEntity savedEntity = dao.save(busEntity);
-
-        Bus savedBus = new Bus();
-        savedBus.setId(savedEntity.getId());
-        savedBus.setName(savedEntity.getName());
-        savedBus.setRouteId(savedEntity.getRouteId());
-
-        return savedBus;
+        BusEntity busEntity = modelMapper.map(bus, BusEntity.class);
+        var routeEntity = routeDao.findById(bus.getRoute().getId());
+        busEntity.setRouteId(routeEntity.get());
+        busEntity = dao.save(busEntity);
+        bus.setId(busEntity.getId());
+        return bus;
     }
 
     public Bus get(String name) {
@@ -39,7 +42,7 @@ public class BusRepository {
             Bus savedBus = new Bus();
             savedBus.setId(busEntity.getId());
             savedBus.setName(busEntity.getName());
-            savedBus.setRouteId(busEntity.getRouteId());
+//            savedBus.setRouteId(busEntity.getRouteId());
 
             return savedBus;
         }
@@ -55,7 +58,7 @@ public class BusRepository {
         Optional<BusEntity> existBus = dao.findById(bus.getId());
         bus.setId(bus.getId());
         bus.setName(bus.getName());
-        bus.setRouteId(bus.getRouteId());
+        bus.setRoute(bus.getRoute());
 
         dao.save(existBus.get());
         return bus;

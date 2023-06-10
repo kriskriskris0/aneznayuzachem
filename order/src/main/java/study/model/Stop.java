@@ -1,11 +1,10 @@
 package study.model;
 
-import study.entities.RouteEntity;
 
 public class Stop {
     private Long id;
     private String address;
-    private RouteEntity routeId;
+    private Route route;
 
     public Long getId() {
         return id;
@@ -23,11 +22,9 @@ public class Stop {
         this.address = address;
     }
 
-    public RouteEntity getRouteId() {
-        return routeId;
-    }
+    public Route getRoute() { return route; }
 
-    public void setRouteId(RouteEntity routeId) {
-        this.routeId = routeId;
+    public void setRoute(Route route) {
+        this.route = route;
     }
 }

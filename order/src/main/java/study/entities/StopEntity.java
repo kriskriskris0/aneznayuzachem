@@ -39,8 +39,6 @@ public class StopEntity implements Serializable {
         return route;
     }
 
-    public void setRouteId(RouteEntity route) {
-        this.route = route;
-    }
+    public void setRouteId(RouteEntity route) { this.route = route; }
 
 }
