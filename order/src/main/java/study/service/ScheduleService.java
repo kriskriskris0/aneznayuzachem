@@ -1,17 +1,13 @@
 package study.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import study.entities.BusEntity;
-import study.entities.ScheduleEntity;
-import study.model.Bus;
-import study.model.Schedule;
-import study.repository.dao.BusDao;
-import study.repository.dao.ScheduleDao;
 import org.modelmapper.ModelMapper;
-import study.repository.ScheduleRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import study.entities.ScheduleEntity;
+import study.model.Schedule;
+import study.repository.ScheduleRepository;
+import study.repository.dao.ScheduleDao;
 
-import java.sql.Time;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -50,7 +46,7 @@ public class ScheduleService {
 
 
     public Schedule update(Schedule schedule) {
-        Schedule existSchedule = repository.get(Time.valueOf(String.valueOf(schedule.getId())));
+        Schedule existSchedule = repository.get(schedule.getTime());
 
         if (existSchedule == null){
             return repository.create(schedule);
